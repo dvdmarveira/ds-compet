@@ -1,0 +1,11 @@
+pandas
+matplotlib
+requests
+openpyxl
+gspread
+gspread-dataframe
+oauth2client
+nbformat
+seaborn
+numpy
+

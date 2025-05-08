@@ -1,0 +1,2 @@
+# Trata arquivos Jupyter Notebook .ipynb como se fossem Python .py para o gráfico de linguagens do GitHub
+*.ipynb linguist-language=Python
