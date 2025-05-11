@@ -1,119 +1,84 @@
-# Dados de Remuneração de Docentes - Tratamento para N8N
+# Análise de Remuneração de Docentes por Regiões do Brasil
 
-Este repositório contém os scripts e arquivos necessários para o tratamento dos dados de remuneração de docentes do Nordeste em 2020, preparando-os para uso pelo agente N8N.
+Este repositório contém uma análise detalhada da remuneração de docentes no Brasil, organizada por região, rede de ensino e formação, com base em dados do ano de 2020.
 
-## Estrutura do Repositório
+## Análise `analise_regioes.ipynb`
 
-- **datasets/**: Pasta contendo os arquivos de dados originais e processados
+Este notebook realiza uma análise exploratória detalhada sobre remuneração docente no Brasil, identificando disparidades regionais importantes. O estudo começa com a leitura e preparação dos dados, seguido por análises comparativas entre regiões, redes de ensino (pública x privada) e níveis de formação dos docentes.
 
-  - `Remuneracao_docentes_Nordeste_2020_Att.xlsx`: Arquivo original com os dados brutos
-  - `dados_remuneracao_tratados.xlsx`: Arquivo processado com múltiplas abas para diferentes visões dos dados
+As visualizações incluem gráficos comparativos de remuneração média por região, análises do impacto da rede de ensino nas diferentes regiões do país, e a influência do nível de formação dos docentes na remuneração. O notebook também examina o coeficiente de variação (CV) como medida de dispersão salarial.
 
-- **tratamento_dados.py**: Script Python para processamento dos dados em linha de comando
-- **tratamento_dados.ipynb**: Notebook Jupyter com o mesmo processamento, incluindo visualizações e análises
-- **requirements.txt**: Lista de dependências necessárias para executar os scripts
+O estudo culmina com a exportação dos dados tratados para arquivos Excel, facilitando análises posteriores e compartilhamento dos resultados. Os principais insights obtidos apontam para significativas disparidades regionais na remuneração docente, com as regiões Sudeste e Sul apresentando maiores valores médios, além de evidenciar o impacto positivo da formação superior na remuneração em todas as regiões do país.
 
-## Executando o Processamento
+1. **Carregamento e Tratamento dos Dados**:
 
-### 1. Instalação das Dependências
+   - Leitura do arquivo Excel com dados de remuneração
+   - Tratamento e renomeação das colunas
+   - Verificação da integridade dos dados
 
-```bash
-pip install -r requirements.txt
-```
+2. **Análise por Região**:
 
-### 2. Execução do Script
+   - Comparação da remuneração média de docentes entre as regiões do Brasil
+   - Visualização da distribuição salarial por região em gráficos de barras
+   - Análise estatística descritiva dos dados regionais
 
-Para executar o script de processamento em linha de comando:
+3. **Análise por Rede de Ensino**:
 
-```bash
-python tratamento_dados.py
-```
+   - Comparação entre redes públicas (estadual e municipal) e privadas
+   - Visualização de remuneração por tipo de rede
+   - Análise das diferenças salariais entre redes
 
-Para utilizar o notebook e visualizar as análises:
+4. **Análise por Formação**:
 
-```bash
-jupyter notebook tratamento_dados.ipynb
-```
+   - Comparação entre docentes com e sem ensino superior
+   - Impacto da formação na remuneração por região e rede de ensino
 
-## Estrutura dos Dados Processados
+5. **Visualizações**:
 
-O arquivo `dados_remuneracao_tratados.xlsx` contém as seguintes abas:
+   - Gráficos de barras para comparações diretas
+   - Heatmaps para análise de correlações entre variáveis
+   - Boxplots para visualização da distribuição e outliers
 
-1. **Dados_Completos**: Todos os dados tratados com todas as colunas
-2. **Resumo_Regiao**: Dados agregados por região do Brasil
-3. **Resumo_UF**: Dados agregados por unidade federativa
-4. **Resumo_Tipo_Rede**: Dados agregados por tipo de rede (pública e privada)
-5. **Resumo_Escolaridade**: Dados agregados por nível de escolaridade dos docentes
-6. **Diferenca_Salarial**: Análise da diferença salarial entre docentes com e sem ensino superior
-7. **Metadados**: Descrição detalhada de cada coluna do dataset
+6. **Exportação de Dados Tratados**:
+   - Criação de arquivos Excel com dados consolidados
+   - Dados agrupados por região, rede de ensino e formação
+   - Comparativos entre UFs organizados por região
 
-## Colunas dos Dados Tratados
+## Principais Conclusões
 
-Os dados foram tratados e renomeados para facilitar a compreensão:
+- Existem diferenças significativas na remuneração de docentes entre as regiões do Brasil
+- A região Sudeste e Sul apresentam as maiores médias salariais para docentes
+- Docentes com ensino superior recebem remuneração consideravelmente maior
+- A rede privada apresenta padrões salariais distintos das redes públicas
+- O coeficiente de variação indica diferentes níveis de dispersão salarial entre as regiões
 
-| Coluna Original | Nova Coluna                   | Descrição                                                          |
-| --------------- | ----------------------------- | ------------------------------------------------------------------ |
-| NU_ANO_CENSO    | ANO_CENSO                     | Ano de referência do Censo Escolar                                 |
-| NO_REGIAO       | REGIAO                        | Região do Brasil                                                   |
-| SG_UF           | UF                            | Unidade Federativa                                                 |
-| NO_DEPENDENCIA  | DEPENDENCIA                   | Dependência administrativa (Estadual, Municipal, Federal, Privada) |
-| NO_CATEGORIA    | CATEGORIA                     | Categoria dos docentes (Total, Com Superior, Sem Superior)         |
-| ED_BAS_CAT_1    | NUMERO_DOCENTES               | Número total de docentes                                           |
-| ED_BAS_CAT_2    | PERCENTUAL_DOC_TEMPO_INTEGRAL | Percentual de docentes em tempo integral                           |
-| ED_BAS_CAT_3    | REMUNERACAO_MINIMA            | Valor mínimo da remuneração dos docentes                           |
-| ED_BAS_CAT_4    | REMUNERACAO_MEDIANA           | Valor mediano da remuneração dos docentes                          |
-| ED_BAS_CAT_5    | REMUNERACAO_MEDIA             | Valor médio da remuneração dos docentes                            |
-| ED_BAS_CAT_6    | REMUNERACAO_75_PERCENTIL      | Valor do 75º percentil da remuneração dos docentes                 |
-| ED_BAS_CAT_7    | DESVIO_PADRAO_REMUNERACAO     | Desvio padrão da remuneração dos docentes                          |
-| ED_BAS_CAT_8    | COEF_VARIACAO_PERC            | Coeficiente de variação da remuneração em percentual               |
-| ED_BAS_CAT_9    | REMUNERACAO_MEDIA_40H         | Remuneração média para jornada de 40 horas semanais                |
+## Utilização
 
-Além dessas, foram adicionadas duas novas colunas:
+Para explorar esta análise:
 
-- **TIPO_REDE**: Indica se a dependência administrativa é pública ou privada
-- **DIFERENCA_SALARIAL**: Diferença salarial entre docentes com e sem ensino superior
-
-## Orientações para Integração com N8N
-
-Para integrar esses dados com um agente no N8N, siga estas orientações:
-
-1. **Escolha da planilha**: Utilize o arquivo `dados_remuneracao_tratados.xlsx` como fonte de dados para o agente
-2. **Configuração de webhook**: Configure um webhook no N8N que receberá perguntas dos usuários e buscará as respostas nos dados tratados
-3. **Mapeamento de perguntas comuns**:
-
-   - "Qual a remuneração média dos professores na região X?" → Consultar aba `Resumo_Regiao`
-   - "Qual estado tem a maior remuneração para professores?" → Consultar aba `Resumo_UF` e ordenar por `REMUNERACAO_MEDIA`
-   - "Qual a diferença salarial entre professores com e sem ensino superior?" → Consultar aba `Diferenca_Salarial`
-   - "Qual o salário médio de professores na rede privada vs. pública?" → Consultar aba `Resumo_Tipo_Rede`
-
-4. **Exemplo de consulta SQL**:
-   Se estiver utilizando um banco de dados SQL com os dados importados, pode usar consultas como:
-
-   ```sql
-   -- Consulta para remuneração média por região
-   SELECT REGIAO, AVG(REMUNERACAO_MEDIA) as MEDIA_REGIONAL
-   FROM dados_completos
-   WHERE CATEGORIA = 'Total'
-   GROUP BY REGIAO
-   ORDER BY MEDIA_REGIONAL DESC;
+1. Clone o repositório
+2. Certifique-se de ter o Jupyter Notebook e as dependências instaladas:
    ```
+   pip install pandas numpy matplotlib seaborn
+   ```
+3. Abra o notebook `analise_regioes.ipynb` e execute as células
 
-5. **Atualização periódica**: Defina um processo para atualizar os dados quando novas versões do censo estiverem disponíveis, executando novamente os scripts de processamento
+## Exportação dos Dados
 
-## Possíveis Perguntas para o Agente
+A análise permite exportar os resultados em formato Excel para uso posterior, com diferentes abas:
 
-O agente N8N deve ser capaz de responder perguntas como:
+- Dados por região
+- Dados por região e rede de ensino
+- Dados por região e formação
+- Dados por UF
 
-- Qual a remuneração média dos professores no Nordeste?
-- Qual estado possui a maior diferença salarial entre professores com e sem ensino superior?
-- Como a remuneração dos professores da rede pública se compara com a rede privada?
-- Qual o percentual médio de professores em tempo integral por região?
-- Qual a remuneração mediana dos professores em cada estado?
-- Qual a proporção de professores com ensino superior em cada região?
-- Como a variação salarial (coeficiente de variação) se compara entre diferentes estados?
+Estes dados processados podem ser utilizados para alimentar dashboards, relatórios ou outras análises específicas.
 
-## Limitações e Considerações
+## Requisitos
 
-- Os dados são referentes ao ano de 2020, portanto não refletem mudanças posteriores
-- Alguns registros podem ter sido removidos durante o tratamento por falta de informações essenciais
-- As estatísticas agregadas (médias, medianas) podem ocultar disparidades importantes dentro dos grupos
+- Python 3.6+
+- pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
